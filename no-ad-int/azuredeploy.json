@@ -93,9 +93,16 @@
       }
     },
     "sshPublicKey": {
-      "type": "string",
+      "type": "securestring",
       "metadata": {
         "description": "SSH public key on all VMs"
+      }
+    },
+    "sshPrivateKey": {
+      "type": "securestring",
+      "minLength": 1,
+      "metadata": {
+        "description": "SSH private key for deploying OpenShift"
       }
     }
   },
@@ -751,6 +758,12 @@
           },
 		  "adminPassword": {
             "value": "[parameters('adminPassword')]"
+          },
+          "sshPublicKey": {
+            "value": "[parameters('sshPublicKey')]"
+          },
+          "sshPrivateKey": {
+            "value": "[parameters('sshPrivateKey')]"
           }
         }
       }

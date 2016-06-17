@@ -4,13 +4,13 @@ set -e
 
 SUDOUSER=$1
 PASSWORD=$2
-# PUBLICKEY=$3
-# PRIVATEKEY=$4
-MASTER=$3
-MASTERPUBLICIPHOSTNAME=$4
-MASTERPUBLICIPADDRESS=$5
-NODEPREFIX=$6
-NODECOUNT=$7
+PUBLICKEY=$3
+PRIVATEKEY=$4
+MASTER=$5
+MASTERPUBLICIPHOSTNAME=$6
+MASTERPUBLICIPADDRESS=$7
+NODEPREFIX=$8
+NODECOUNT=$9
 # AZUREADAPPNAME=$9
 # AZUREADCLIENTID=${10}
 # AZUREADCLIENTSECRET=${11}
@@ -20,9 +20,9 @@ DOMAIN=$( awk 'NR==2' /etc/resolv.conf | awk '{ print $2 }' )
 
 echo "Generating keys"
 
-# runuser -l $SUDOUSER -c "echo \"$PUBLICKEY\" > ~/.ssh/id_rsa.pub"
-# runuser -l $SUDOUSER -c "echo \"$PRIVATEKEY\" > ~/.ssh/id_rsa"
-# runuser -l $SUDOUSER -c "chmod 600 ~/.ssh/id_rsa*"
+runuser -l $SUDOUSER -c "echo \"$PUBLICKEY\" > ~/.ssh/id_rsa.pub"
+runuser -l $SUDOUSER -c "echo \"$PRIVATEKEY\" > ~/.ssh/id_rsa"
+runuser -l $SUDOUSER -c "chmod 600 ~/.ssh/id_rsa*"
 
 echo "Configuring SSH ControlPath to use shorter path name"
 
