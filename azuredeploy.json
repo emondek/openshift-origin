@@ -86,13 +86,13 @@
       }
     },
     "sshPublicKey": {
-      "type": "securestring",
+      "type": "string",
       "metadata": {
         "description": "SSH public key on all VMs"
       }
     },
     "sshPrivateKey": {
-      "type": "securestring",
+      "type": "string",
       "minLength": 1,
       "metadata": {
         "description": "SSH private key for deploying OpenShift"
