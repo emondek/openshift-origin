@@ -300,51 +300,7 @@
 		}
   },
   "resources": [
-    {
-      "type": "Microsoft.KeyVault/vaults",
-      "name": "[parameters('keyVaultName')]",
-      "apiVersion": "2015-06-01",
-      "location": "[resourceGroup().location]",
-      "tags": {
-        "displayName": "KeyVault"
-      },
-      "properties": {
-        "enabledForDeployment": false,
-        "enabledForTemplateDeployment": true,
-        "enabledForVolumeEncryption": false,
-        "tenantId": "[parameters('azureAdTenantId')]",
-        "accessPolicies": [
-          {
-            "tenantId": "[parameters('azureAdTenantId')]",
-            "objectId": "[parameters('azureAdUserObjectId')]",
-            "permissions": {
-              "keys": "[variables('keyVaultKeysPermissions')]",
-              "secrets": "[variables('keyVaultSecretsPermissions')]"
-            }
-          }
-        ],
-        "sku": {
-          "name": "[variables('keyVaultSku')]",
-          "family": "A"
-        }
-      },
-      "resources": [
-        {
-          "type": "secrets",
-          "name": "[variables('keyVaultSecretName')]",
-          "apiVersion": "2015-06-01",
-          "tags": {
-            "displayName": "KeyVaultSecret"
-          },
-          "properties": {
-            "value": "[parameters('sshPrivateKey')]"
-          },
-          "dependsOn": [
-            "[concat('Microsoft.KeyVault/vaults/', parameters('keyVaultName'))]"
-          ]
-        }
-      ]
-    },
+    
     {
       "type": "Microsoft.Network/virtualNetworks",
       "name": "[variables('virtualNetworkName')]",
