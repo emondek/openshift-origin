@@ -26,31 +26,13 @@
     "adminUsername": {
       "value": "changeme"
     },
+	"adminPassword": {
+		"value": "changeme"
+	},
     "sshPublicKey": {
       "value": "GEN-SSH-PUB-KEY"
     },
     "sshPrivateKey": {
-      "value": "changeme"
-    },
-    "keyVaultName": {
-      "value": "changeme"
-    },
-    "azureAdUserObjectId": {
-      "value": "changeme"
-    },
-    "azureAdAppName": {
-      "value": "changeme"
-    },
-    "azureAdClientId": {
-      "value": "changeme"
-    },
-    "azureAdClientSecret": {
-      "value": "changeme"
-    },
-    "azureAdTenantId": {
-      "value": "changeme"
-    },
-    "azureAdLogoutRedirectUri": {
       "value": "changeme"
     }
   }
