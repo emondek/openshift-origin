@@ -33,6 +33,11 @@
       "value": "GEN-SSH-PUB-KEY"
     },
     "sshPrivateKey": {
-      "value": "changeme"
+      "reference": {
+			"keyvault": {
+				"id": "/subscriptions/changeme/resourceGroups/changeme/providers/Microsoft.KeyVault/vaults/changeme"
+			},
+			"secretName": "changeme"
+		}
     }
 }
