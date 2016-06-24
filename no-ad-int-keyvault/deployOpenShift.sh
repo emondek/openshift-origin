@@ -14,6 +14,8 @@ NODECOUNT=$9
 
 DOMAIN=$( awk 'NR==2' /etc/resolv.conf | awk '{ print $2 }' )
 
+# Generate public / private keys for use by Ansible
+
 echo "Generating keys"
 
 runuser -l $SUDOUSER -c "echo \"$PUBLICKEY\" > ~/.ssh/id_rsa.pub"
@@ -25,6 +27,8 @@ echo "Configuring SSH ControlPath to use shorter path name"
 sed -i -e "s/^# control_path = %(directory)s\/%%h-%%r/control_path = %(directory)s\/%%h-%%r/" /etc/ansible/ansible.cfg
 sed -i -e "s/^#host_key_checking = False/host_key_checking = False/" /etc/ansible/ansible.cfg
 sed -i -e "s/^#pty=False/pty=False/" /etc/ansible/ansible.cfg
+
+# Create Ansible Hosts File
 
 echo "Generating Ansible hosts file"
 
