@@ -1,4 +1,4 @@
-sudo #!/bin/bash
+#!/bin/bash
 
 # Update system to latest packages and install dependencies
 yum -y update
