@@ -43,7 +43,7 @@ You will need to create a Key Vault to store your SSH Private Key that will then
 8.  adminUsername: Admin username for both OS login and OpenShift login
 9.  adminPassword: Admin password for both OS login and OpenShift login
 10. sshPublicKey: Copy your SSH Public Key here
-11. sshPrivateKey - id: Should adhere to: "/subscriptions/[subscirption GUID]/resourceGroups/[ResourceGroupName]/providers/Microsoft.KeyVault/vaults/[KeyVaultName]"
+11. sshPrivateKey - id: Should adhere to: "/subscriptions/[subscirption GUID]/resourceGroups/[ResourceGroupName]/providers/Microsoft.KeyVault/vaults/[KeyVaultName]"<br/>
     a. Example: "/subscriptions/111a111b-1234-1abc-aa1a-11df2345ab67/resourceGroups/MyResourceGroup/providers/Microsoft.KeyVault/vaults/MyKeyVault"
 12. sshPrivateKey - SecretName: The Secret Name you used when creating the Secret
 
@@ -57,8 +57,6 @@ The OpenShift Ansible playbook does take a while to run when using VMs backed by
 <hr />
 Be sure to follow the OpenShift instructions to create the ncessary DNS entry for the OpenShift Router for access to applications.
 
-## Post-Deployment Operations
- 
-## Additional OpenShift Configuration Options
+### Additional OpenShift Configuration Options
  
 You can configure additional settings per the official [OpenShift Origin Documentation](https://docs.openshift.org/latest/welcome/index.html).
