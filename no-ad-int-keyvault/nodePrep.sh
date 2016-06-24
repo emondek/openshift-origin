@@ -1,4 +1,4 @@
-#!/bin/bash
+sudo #!/bin/bash
 
 # Update system to latest packages and install dependencies
 yum -y update
@@ -20,7 +20,7 @@ yum-config-manager epel --disable
 
 
 # Install Docker
-yum -y install docker
+yum -y install docker-1.9.1-40.el7
 
 # Create thin pool logical volume for Docker
 echo "DEVS=/dev/sdc" >> /etc/sysconfig/docker-storage-setup
