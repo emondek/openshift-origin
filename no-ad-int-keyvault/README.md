@@ -1,7 +1,7 @@
 # OpenShift Origin with Azure Active Directory
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fharoldwongms%2Fopenshift-origin%2Fmaster%2Fno-ad-int%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fharoldwongms%2Fopenshift-origin%2Fmaster%2Fno-ad-int%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fharoldwongms%2Fopenshift-origin%2Fmaster%2Fno-ad-int-keyvault%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fharoldwongms%2Fopenshift-origin%2Fmaster%2Fno-ad-int-keyvault%2Fazuredeploy.json" target="_blank">
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
@@ -21,9 +21,35 @@ This template deploys OpenShift Origin with basic username / password for authen
 
 You'll need to generate a pair of SSH keys in order to provision this template. Ensure that you do not include a passcode with the private key.
 
+### Create Key Vault to store SSH Private Key
+
+You will need to create a Key Vault to store your SSH Private Key that will then be used as part of the deployment.
+
+1. Create KeyVault using Powershell
+   a.  Create new resource group: New-AzureRMResourceGroup -Name 'ResourceGroupName' -Location 'West US'
+   b.  Create key vault: New-AzureRmKeyVault -VaultName 'KeyVaultName' -ResourceGroup 'ResourceGroupName' -Location 'West US'
+   c.  Create variable with sshPrivateKey: $securesecret = ConvertTo-SecureString -String '[copy ssh Private Key here - including line feeds]' -AsPlainText -Force
+   d.  Create Secret: Set-AzureKeyVaultSecret -Name 'SecretName' -SecretValue $securesecret -VaultName 'KeyVaultName'
+   
+### azuredeploy.Parameters.json File Explained
+
+1.  masterVmSize: Select from one of the allowed VM sizes listed in the azuredeploy.json file
+2.  nodeVmSize: Select from one of the allowed VM sizes listed in the azuredeploy.json file
+3.  openshiftMasterHostName: Host name for the Master Node
+4.  openshiftMasterPublicIpDnsLabelPrefix: A unique Public DNS name to reference the Master Node by
+5.  nodeLbPublicIpDnsLabelPrefix: A unique Public DNS name to reference the Node Load Balancer by.  Used to access deployed applications
+6.  nodePrefix: prefix to be prepended to create host names for the Nodes
+7.  nodeInstanceCount: Number of Nodes to deploy
+8.  adminUsername: Admin username for both OS login and OpenShift login
+9.  adminPassword: Admin password for both OS login and OpenShift login
+10. sshPublicKey: Copy your SSH Public Key here
+11. sshPrivateKey - id: Should adhere to: "/subscriptions/[subscirption GUID]/resourceGroups/[ResourceGroupName]/providers/Microsoft.KeyVault/vaults/[KeyVaultName]"
+    a. Example: "/subscriptions/111a111b-1234-1abc-aa1a-11df2345ab67/resourceGroups/MyResourceGroup/providers/Microsoft.KeyVault/vaults/MyKeyVault"
+12. sshPrivateKey - SecretName: The Secret Name you used when creating the Secret
+
 ## Deploy Template
 
-Once you have collected all of the prerequisites for the template, you can deploy the template using the **Deploy to Azure** button at the top or by populating the *azuredeploy.parameters.json* file and executing Resource Manager deployment commands with PowerShell or the xplat CLI.
+Once you have collected all of the prerequisites for the template, you can deploy the template by populating the *azuredeploy.parameters.json* file and executing Resource Manager deployment commands with PowerShell or the xplat CLI.
 
 ### NOTE
 
