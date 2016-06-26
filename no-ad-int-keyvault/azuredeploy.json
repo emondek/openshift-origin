@@ -359,7 +359,7 @@
     },
     {
       "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[variables('nodeLbPublicIpAddressName')]",
+      "name": "[parameters('nodeLbPublicIpDnsLabelPrefix')]",
       "location": "[variables('location')]",
       "apiVersion": "2015-06-15",
       "tags": {
@@ -388,7 +388,7 @@
         "displayName": "OpenShiftNodeLB"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/publicIPAddresses/', variables('nodeLbPublicIpAddressName'))]"
+        "[concat('Microsoft.Network/publicIPAddresses/', parameters('nodeLbPublicIpDnsLabelPrefix'))]"
       ],
       "properties": {
         "frontendIPConfigurations": [
